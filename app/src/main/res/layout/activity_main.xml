@@ -331,6 +331,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:elevation="8dp"
+        android:background="@drawable/bg_main_bottom_sheets"
         app:behavior_hideable="false"
         app:behavior_peekHeight="160dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">

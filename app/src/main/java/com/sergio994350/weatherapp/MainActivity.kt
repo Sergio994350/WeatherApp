@@ -2,6 +2,9 @@ package com.sergio994350.weatherapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.sergio994350.weatherapp.view.adapters.MainDailyListAdapter
+import com.sergio994350.weatherapp.view.adapters.MainHourlyListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -11,10 +14,22 @@ class MainActivity : AppCompatActivity() {
 
         initViews()
 
+        main_hourly_list.apply {
+            adapter = MainHourlyListAdapter()
+            layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
+        }
+
+        main_daily_list.adapter = MainDailyListAdapter()
+        main_daily_list.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        main_daily_list.setHasFixedSize(true)
+
     }
 
 
-    private fun initViews(){
+    private fun initViews() {
         main_city_name_tv.text = "Moscow"
         main_date_tv.text = "January, 06"
         main_weather_condition_description.text = "Clear"
