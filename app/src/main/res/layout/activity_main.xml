@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_bg_color"
     android:layout_margin="6dp"
     tools:context=".MainActivity">
 
@@ -200,8 +201,8 @@
             android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -330,10 +331,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:elevation="8dp"
         android:background="@drawable/bg_main_bottom_sheets"
+        android:elevation="8dp"
         app:behavior_hideable="false"
-        app:behavior_peekHeight="160dp"
+        app:behavior_peekHeight="138dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <LinearLayout
@@ -383,4 +384,4 @@
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <!--        14 // 10:14 -->
+    <!--        16 // 50:21 [Model-View-Presenter, GPS] -->

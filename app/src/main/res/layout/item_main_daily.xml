@@ -18,11 +18,11 @@
             style="@style/MainTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="20 Tuesday"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="20 Tuesday" />
 
         <ImageView
             android:id="@+id/item_daily_weather_condition_icon"
@@ -35,14 +35,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_daily_pop_tv"
             style="@style/MainTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:text="25 %"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_daily_weather_condition_icon"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="25 %" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/item_daily_max_temp_tv"
@@ -51,11 +52,12 @@
             android:gravity="end"
             android:includeFontPadding="false"
             android:paddingEnd="4dp"
-            android:text="27\u00B0"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry"
+            tools:text="27\u00B0" />
 
         <!-- divider-->
         <LinearLayout
@@ -75,11 +77,12 @@
             android:gravity="end"
             android:includeFontPadding="false"
             android:paddingEnd="4dp"
-            android:text="19\u00B0"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/item_daily_divider"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry"
+            tools:text="19\u00B0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

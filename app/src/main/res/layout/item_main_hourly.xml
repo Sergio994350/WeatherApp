@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="19:00"
+            tools:text="19:00"
             android:textSize="17sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -28,7 +28,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:includeFontPadding="false"
-            android:text="20\u00B0"
+            tools:text="20\u00B0"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -51,7 +51,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="4dp"
                 android:includeFontPadding="false"
-                android:text="25 %"
+                tools:text="25 %"
                 android:textSize="12sp" />
 
 

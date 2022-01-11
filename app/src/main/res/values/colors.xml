@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey_norm">#676767</color>
     <color name="dividerColor">#676767</color>
+    <color name="main_bg_color">#FFFFFF</color>
 </resources>

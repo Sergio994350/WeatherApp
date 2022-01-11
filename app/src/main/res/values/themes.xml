@@ -28,7 +28,7 @@
 
     <style name="MainTextViewStyle">
         <item name="fontFamily">sans-serif</item>
-        <item name="color">#676767</item>
+        <item name="color">@color/grey_norm</item>
 
     </style>
 
@@ -46,7 +46,7 @@
 
     <style name="AdditionalWeatherInformationStyle" parent="MainTextViewStyle">
         <item name="android:textSize">18sp</item>
-        <item name="color">#676767</item>
+        <item name="color">@color/grey_norm</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
