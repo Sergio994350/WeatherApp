@@ -4,9 +4,8 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Looper
+import android.os.HandlerThread
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,16 +14,24 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.sergio994350.weatherapp.business.model.DailyWeatherModel
+import com.sergio994350.weatherapp.business.model.HourlyWeatherModel
+import com.sergio994350.weatherapp.business.model.WeatherData
+import com.sergio994350.weatherapp.presenters.MainPresenter
+import com.sergio994350.weatherapp.view.MainView
 import com.sergio994350.weatherapp.view.adapters.MainDailyListAdapter
 import com.sergio994350.weatherapp.view.adapters.MainHourlyListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import android.os.HandlerThread
+import moxy.MvpAppCompatActivity
+import moxy.ktx.moxyPresenter
 
 
 const val GEO_LOCATION_REQUEST_COD_SUCCESS = 1
 const val TAG = "GEO_TEST"
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : MvpAppCompatActivity(), MainView {
+
+    private val mainPresenter by moxyPresenter { MainPresenter() }
 
     private val geoService by lazy { LocationServices.getFusedLocationProviderClient(this) }
     private val locationRequest by lazy { initLocationRequest() }
@@ -48,6 +55,8 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
         }
+
+        mainPresenter.enable()
 
         // create Looper code
         val handlerThread = HandlerThread("MyHandlerThread")
@@ -76,6 +85,46 @@ class MainActivity : AppCompatActivity() {
         main_sunset_mu_tv.text = "21:30"
     }
 
+    // ------------------- moxy code ------------------
+
+    override fun displayLocation(data: String) {
+        main_city_name_tv.text = data
+    }
+
+    override fun displayCurrentData(data: WeatherData) {
+        main_city_name_tv.text = "Moscow"
+        main_date_tv.text = "January, 06"
+        main_weather_condition_description.text = "Clear"
+        main_weather_condition_icon.setImageResource(R.drawable.ic_sun)
+        main_temp.text = "25\u00B0"
+        main_temp_min_tv.text = "19\u00B0"
+        main_temp_max_tv.text = "27\u00B0"
+        main_weather_image.setImageResource(R.mipmap.sun_cloud_1x)
+        main_pressure_mu_tv.text = "1023 hPa"
+        main_humidity_mu_tv.text = "87 %"
+        main_wind_speed_mu_tv.text = "5 m/s"
+        main_sunrise_mu_tv.text = "05:50"
+        main_sunset_mu_tv.text = "21:30"
+    }
+
+    override fun displayHourlyData(data: List<HourlyWeatherModel>) {
+        (main_hourly_list.adapter as MainHourlyListAdapter).updateData(data)
+    }
+
+    override fun displayDailyData(data: List<DailyWeatherModel>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun displayError(error: Throwable) {
+        TODO("Not yet implemented")
+    }
+
+    override fun setLoading(flag: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+    // ------------------- moxy code ------------------
+
     // ------------------- location code ------------------
 
     private fun initLocationRequest(): LocationRequest {
@@ -92,7 +141,7 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "onLocationResult: ${geo.locations.size}")
             for (location in geo.locations) {
                 mLocation = location
-                // TODO
+                mainPresenter.refresh(mLocation.latitude.toString(), mLocation.longitude.toString())
                 Log.d(
                     TAG,
                     "onLocationResult: lat: ${location.latitude}; lon: ${location.longitude}"
@@ -143,7 +192,6 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
     }
-
     // ------------------- location code ------------------
 
 }
